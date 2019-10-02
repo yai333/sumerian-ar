@@ -1,0 +1,27 @@
+{
+    "node": {
+        "awscloudformation": {
+            "AuthRoleName": "sumerian-ar-node-20191002210402-authRole",
+            "UnauthRoleArn": "arn:aws:iam::820412658253:role/sumerian-ar-node-20191002210402-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::820412658253:role/sumerian-ar-node-20191002210402-authRole",
+            "Region": "ap-southeast-2",
+            "DeploymentBucketName": "sumerian-ar-node-20191002210402-deployment",
+            "UnauthRoleName": "sumerian-ar-node-20191002210402-unauthRole",
+            "StackName": "sumerian-ar-node-20191002210402",
+            "StackId": "arn:aws:cloudformation:ap-southeast-2:820412658253:stack/sumerian-ar-node-20191002210402/553f1c20-e504-11e9-86f5-0609d93c9d3c"
+        },
+        "categories": {
+            "auth": {
+                "cognito326d2d50": {}
+            },
+            "xr": {
+                "NewFromAiyi": {
+                    "url": "https://sumerian.ap-southeast-2.amazonaws.com/20180801/projects/Drafts/release/authTokens?sceneId=86926a5b25444fa49e9eeb8c9b577a51.scene",
+                    "sceneId": "86926a5b25444fa49e9eeb8c9b577a51.scene",
+                    "region": "ap-southeast-2",
+                    "projectName": "Drafts"
+                }
+            }
+        }
+    }
+}

@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import { SumerianScene } from 'aws-amplify-react';
+import Amplify, {XR as awsXR} from 'aws-amplify';
+import Aws_exports from './aws-exports';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+Amplify.configure(Aws_exports);
 
-export default App;
+class App extends Component {
+   render() {
+     return (
+       <div id="sumerian-scene-dom-id" style={ {height: '100vh'} }>
+         <p id="loading-status">Loading...</p>
+       </div>
+     );
+   }
+
+   componentDidMount() {
+     this.loadAndStartScene();
+   }
+
+   async loadAndStartScene() {
+     await awsXR.loadScene('NewFromAiyi', 'sumerian-scene-dom-id');
+
+     const world = awsXR.getSceneController('NewFromAiyi').sumerianRunner.world
+
+     window.sumerian.SystemBus.addListener('xrerror', (params) => {
+       // Add error handling here
+     });
+
+
+     window.sumerian.SystemBus.addListener('xrready', () => {
+       // Both the Sumerian scene and XR8 camera have loaded. Dismiss loading status
+       const loadingStatus = window.document.getElementById('loading-status');
+       if (loadingStatus && loadingStatus.parentNode) {
+         loadingStatus.parentNode.removeChild(loadingStatus);
+       }
+     });
+
+     window.XR8.Sumerian.addXRWebSystem(world)
+    
+     awsXR.start('NewFromAiyi')
+   }
+ };
+
+export default App
